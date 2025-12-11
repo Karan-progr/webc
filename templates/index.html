@@ -1,8 +1,14 @@
 <!doctype html>
 <html>
-  <title>
-    commonroom.io
-  </title>
+  <head>
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#00ccff">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>
+      commonroom.io
+    </title>
+  <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <body style="background: linear-gradient(135deg, #00ffcc, #0066ff);min-height:100vh;">
     <h1>Welcome to commonRoom Chatbox Version 0.1</h1>
@@ -13,6 +19,14 @@
     <div class="log">
       <a href="{{ url_for('login') }}"> <h2>LOGIN if you already have an account.</h2></a>
     </div>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service worker registered'))
+    .catch(e => console.warn('SW registration failed', e));
+}
+</script>
+
     </body>
 </html>
 
@@ -34,4 +48,5 @@
     border-radius: 20px;
     border-style: groove;
   }
+
 </style>
