@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#00ccff">
+<meta name="mobile-web-app-capable" content="yes">
+
     <title>login</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -17,6 +21,14 @@
         </div>
         <button type = "submit" style="border-radius: 10px; width: 100px; height: 40px;">Submit</button>
     </form>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service worker registered'))
+    .catch(e => console.warn('SW registration failed', e));
+}
+</script>
+
 </body>
 </html>
 
@@ -43,5 +55,6 @@
 .field{
     margin: 10px;
 }
+
 
 </style>
