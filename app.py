@@ -64,6 +64,13 @@ def register ():
         return redirect (url_for('login'))
     return render_template ("register.html")
 
+from flask import send_file
+
+@app.route("/download_db")
+def download_db():
+    return send_file("user.db", as_attachment=True)
+
 if __name__ == "__main__":
     app.run (debug=True, host="0.0.0.0")
+
 
