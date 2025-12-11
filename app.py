@@ -15,6 +15,11 @@ conn.close()
 messages = []
 app.secret_key = "1234"
 
+@app.route('/service-worker.js')
+def service_worker():
+    return app.send_static_file('service-worker.js')
+
+
 @app.route ('/')
 def index ():
     return render_template ('index.html')
@@ -72,5 +77,6 @@ def download_db():
 
 if __name__ == "__main__":
     app.run (debug=True, host="0.0.0.0")
+
 
 
