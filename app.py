@@ -2,6 +2,15 @@ from flask import Flask, render_template, redirect, request, url_for, session
 import sqlite3
 app = Flask (__name__)
 import os
+conn = sqlite3.connect("user.db", timeout=5, check_same_thread=False)
+    cur = conn.cursor()
+
+    cmd = "CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY, username TEXT UNIQUE, passcode INTEGER)"
+
+    cur.execute (cmd)
+
+    conn.commit()
+    conn.close()
 
 messages = []
 app.secret_key = "1234"
@@ -56,13 +65,4 @@ def register ():
     return render_template ("register.html")
 
 if __name__ == "__main__":
-    conn = sqlite3.connect("user.db", timeout=5, check_same_thread=False)
-    cur = conn.cursor()
-
-    cmd = "CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY, username TEXT UNIQUE, passcode INTEGER)"
-
-    cur.execute (cmd)
-
-    conn.commit()
-    conn.close()
     app.run (debug=True, host="0.0.0.0")
