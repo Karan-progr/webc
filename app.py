@@ -3,14 +3,14 @@ import sqlite3
 app = Flask (__name__)
 import os
 conn = sqlite3.connect("user.db", timeout=5, check_same_thread=False)
-    cur = conn.cursor()
+cur = conn.cursor()
 
-    cmd = "CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY, username TEXT UNIQUE, passcode INTEGER)"
+cmd = "CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY, username TEXT UNIQUE, passcode INTEGER)"
 
-    cur.execute (cmd)
+cur.execute (cmd)
 
-    conn.commit()
-    conn.close()
+conn.commit()
+conn.close()
 
 messages = []
 app.secret_key = "1234"
@@ -66,3 +66,4 @@ def register ():
 
 if __name__ == "__main__":
     app.run (debug=True, host="0.0.0.0")
+
