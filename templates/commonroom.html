@@ -1,7 +1,12 @@
 <!doctype html>
 <html>
-    <title>commonroom</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <link rel="manifest" href="/static/manifest.json">
+        <meta name="theme-color" content="#00ccff">
+        <meta name="mobile-web-app-capable" content="yes">
+         <title>commonroom</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
 <body style="background-color: black; padding-bottom:120px; margin:0;">
 
 <h1 style="background-color: rgb(114,255,150); border-radius:10px; text-align:center;">
@@ -49,6 +54,13 @@
       <button type="submit" style="border-radius:10px; width:auto; height:50px;">Send</button>
   </form>
 </div>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service worker registered'))
+    .catch(e => console.warn('SW registration failed', e));
+}
+</script>
 
 </body>
 </html>
@@ -94,3 +106,4 @@ window.onload = function() {
 
 setInterval(fetchMessages, 1000);
 </script>
+
