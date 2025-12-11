@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="center-page">
+    <form method="post" class="my-form">
+        <h1 style="text-align: center;">Register...</h1>
+        <div class="field" >
+        <input type="text" placeholder="YourName" name = username style="width: 300px; height: 40px; font-size: 18px; border-radius: 10px;">
+        <br>
+        </div>
+        <div class="field" >
+        <input type="number" placeholder="Passcode" name = passcode style="width: 300px; height: 40px; font-size: 18px; border-radius: 10px;">
+        <br>
+        </div>
+        <button type = "submit" style="border-radius: 10px; width: 100px; height: 40px;">Submit</button>
+    </form>
+</body>
+</html>
+
+<style>
+    .center-page {
+    display: flex;
+    justify-content: center;  
+    align-items: center;    
+    height: 100vh;            
+    margin: 0;  
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
+           
+}
+
+.my-form {
+    padding: 50px;
+    background: rgb(152, 255, 148);
+    border-radius: 10px;
+    border-width: 10px;
+    border-style: solid;
+    text-align: center;
+}
+
+.field{
+    margin: 10px;
+}
+
+</style>

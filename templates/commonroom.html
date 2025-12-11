@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <title>commonroom</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+<body style="background-color: black; padding-bottom:120px; margin:0;">
+
+<h1 style="background-color: rgb(114,255,150); border-radius:10px; text-align:center;">
+  Welcome To Commonroom
+</h1>
+
+<div id="messages"  style="display:flex; flex-direction:column;">
+  {% for m in messages %}
+    {% if m.user == session['username'] %}
+        <!-- Your message (RIGHT side) -->
+        <p style="
+            background-color: rgb(9, 99, 141);
+            display: inline-block;
+            border-radius: 8px 0 8px 8px;
+            padding: 10px 14px;
+            margin-bottom: 1px;
+            margin-left: auto;
+            text-align: left;
+            align-self:flex-end;
+        ">
+            <strong>@You:</strong> {{ m.text }}
+        </p>
+    {% else %}
+        <!-- Other users’ messages (LEFT side) -->
+        <p style="
+            background-color: rgb(114,255,150);
+            display: inline-block;
+            border-radius: 0 8px 8px 8px;
+            padding: 10px 14px;
+            margin-bottom: 1px;
+            margin-right: auto;
+            text-align: left;
+            align-self:flex-end;
+        ">
+            <strong>@{{ m.user }}:</strong> {{ m.text }}
+        </p>
+    {% endif %}
+{% endfor %}
+</div>
+
+<div class="bottom-box">
+  <form action="/commonroom" method="post" style="width:auto; height:50px;">
+      <input type="text" placeholder="type here..." name="message"
+             style="width:70%; height:50px; border-radius:10px;" autocomplete="off">
+      <button type="submit" style="border-radius:10px; width:auto; height:50px;">Send</button>
+  </form>
+</div>
+
+</body>
+</html>
+
+<style>
+  .bottom-box {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    background: rgb(114,255,150);
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+async function fetchMessages() {
+  try {
+    const res = await fetch('/commonroom', { cache: 'no-store' });
+    const html = await res.text();
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+
+    const newMessages = parsed.getElementById('messages');
+    const currentMessages = document.getElementById('messages');
+
+    if (!newMessages || !currentMessages) return;
+
+    if (currentMessages.innerHTML.trim() !== newMessages.innerHTML.trim()) {
+      currentMessages.innerHTML = newMessages.innerHTML;
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+window.onload = function() {
+  window.scrollTo(0, document.body.scrollHeight);
+};
+
+setInterval(fetchMessages, 1000);
+</script>

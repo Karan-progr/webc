@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <title>
+    commonroom.io
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <body style="background: linear-gradient(135deg, #00ffcc, #0066ff);min-height:100vh;">
+    <h1>Welcome to commonRoom Chatbox Version 0.1</h1>
+    <p>This is a common room where you can discuss with anonymous people online</p>
+    <div class="reg">
+      <a href="{{ url_for('register') }}"> <h2>REGISTER  if you are new to this site.</h2></a>
+    </div>
+    <div class="log">
+      <a href="{{ url_for('login') }}"> <h2>LOGIN if you already have an account.</h2></a>
+    </div>
+    </body>
+</html>
+
+<style>
+  .reg{
+    background-color: rgb(250, 37, 0);
+    display: inline-block;
+    padding: 50px;
+    border-radius: 20px;
+    border-style: ridge;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .log{
+    background-color: rgb(132, 245, 88);
+    display: inline-block;
+    padding: 50px;
+    border-radius: 20px;
+    border-style: groove;
+  }
+</style>
